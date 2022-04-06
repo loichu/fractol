@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/04/06 19:19:37 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:39:19 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,40 @@ void	draw_square(t_data *data, int x, int y, int size, int color)
 	printf("(%i;%i)\n", j - 1, i - 1);
 }
 
-void	draw_circle(int xc, int yc, int r, int color)
+void	draw_circle_oct(t_data *data, int xc, int yc, int x, int y, int color)
+{
+	my_mlx_pixel_put(data, xc+x, yc+y, color);
+	my_mlx_pixel_put(data, xc-x, yc+y, color);
+	my_mlx_pixel_put(data, xc+x, yc-y, color);
+	my_mlx_pixel_put(data, xc-x, yc-y, color);
+	my_mlx_pixel_put(data, xc+y, yc+x, color);
+	my_mlx_pixel_put(data, xc-y, yc+x, color);
+	my_mlx_pixel_put(data, xc+y, yc-x, color);
+	my_mlx_pixel_put(data, xc-y, yc-x, color);
+}
+
+void	draw_circle(t_data *data, int xc, int yc, int r, int color)
 {
 	int	x;
 	int	y;
 	int	d;
+
+	x = 0;
+	y = r;
+	d = 3 - 2 * r;
+	draw_circle_oct(data, xc, yc, x, y, color);
+	while (y >= x)
+	{
+		x++;
+		if (d > 0)
+		{
+			y--;
+			d = d + 4 * (x - y) + 10;
+		}
+		else
+			d = d + 4 * x + 6;
+		draw_circle_oct(data, xc, yc, x, y, color);
+	}
 }	
 
 int	main(void)
@@ -66,9 +95,10 @@ int	main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(
 			img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	draw_square(&img, 0, 0, 500, 0x00FF0000);
-	draw_square(&img, 500, 0, 250, 0x0000FF00);
-	draw_square(&img, 500, 250, 250, 0x000000FF);
+	//draw_square(&img, 0, 0, 500, 0x00FF0000);
+	//draw_square(&img, 500, 0, 250, 0x0000FF00);
+	//draw_square(&img, 500, 250, 250, 0x000000FF);
+	draw_circle(&img, 500, 500, 250, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 	return (0);
