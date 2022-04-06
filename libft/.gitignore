@@ -1,0 +1,6 @@
+mini-mouli/
+*.o
+*.a
+*.swp
+*.bkp
+libftTester
