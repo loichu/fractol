@@ -26,6 +26,13 @@ MAIN		= main.c
 #                                    Compile                                   #
 ################################################################################
 
+OS			= $(uname -s)
+ifeq ($(OS),Linux)
+	MLX=mlx_linux
+else
+	MLX=mlx
+endif
+
 SRCS_DIR	= src
 OBJS_DIR	= obj
 OBJS		= $(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
@@ -35,7 +42,7 @@ LIBFT		= libft.a
 LIBFT_DIR	= libft
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -Imlx
+CFLAGS		= -Wall -Wextra -Werror -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
 DBG_FLAGS	= -g -fsanitize=address
 
 ################################################################################
