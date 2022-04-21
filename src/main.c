@@ -36,6 +36,7 @@ void	draw_square(t_data *data, int x, int y, int size, int color)
 	int	j;
 
 	i = y - 1;
+	j = 0;
 	while (i++ < size + y - 1)
 	{
 		j = x - 1;

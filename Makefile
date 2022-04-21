@@ -26,7 +26,7 @@ MAIN		= main.c
 #                                    Compile                                   #
 ################################################################################
 
-OS			= $(uname -s)
+OS			= $(shell uname)
 ifeq ($(OS),Linux)
 	MLX=mlx_linux
 else
@@ -73,12 +73,23 @@ header:
 			@echo
 
 $(NAME):		$(OBJS) $(MAIN_OBJ)
-				$(CC) $(OBJS) $(MAIN_OBJ) -Lmlx -lmlx -framework OpenGL \
-				   	-framework AppKit $(LIBFT_DIR)/$(LIBFT) -o $(NAME)
+ifeq ($(OS),Linux)
+					$(CC) $(OBJS) $(MAIN_OBJ) -Lmlx_linux -lmlx_Linux \
+					   	-L/usr/lib -lXext -lX11 -lm -lz $(LIBFT_DIR)/$(LIBFT) \
+						-o $(NAME)
+else
+					$(CC) $(OBJS) $(MAIN_OBJ) -Lmlx -lmlx -framework OpenGL \
+						-framework AppKit $(LIBFT_DIR)/$(LIBFT) -o $(NAME)
+endif
 
 obj/%.o:		$(SRCS_DIR)/%.c $(LIBFT_DIR)/$(LIBFT)
+				echo $(OS)
 				@mkdir -p $(dir $@)
-				$(CC) $(CFLAGS) -c $< -o $@
+ifeq ($(OS),Linux)
+					$(CC) $(CFLAGS) -I/usr/include -O3 -c $< -o $@
+else
+					$(CC) $(CFLAGS) -c $< -o $@
+endif
 
 debug:			$(OBJS) $(MOCK_OBJS)
 				$(CC) $(OBJS) $(MAIN_OBJ) $(CFLAGS) $(DBG_FLAGS) \
