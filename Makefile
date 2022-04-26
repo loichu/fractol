@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/04/06 17:27:39 by lhumbert         ###   ########.fr        #
+#    Updated: 2022/04/26 17:25:27 by loichu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME		= fractol
 AUTHOR		= loichu
 DATE		= 06/04/2022
 
-SRCS		= 
+SRCS		= draw_utils.c circle.c rectangle.c
 			  
 MAIN		= main.c
 
