@@ -6,24 +6,29 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:22:42 by loichu            #+#    #+#             */
-/*   Updated: 2022/04/26 17:30:21 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/17 16:15:43 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	draw_square(t_window *data, int x, int y, int size, int color)
+void	draw_rectangle(t_window *data, t_pnt orig, int wid, int hgt, int color)
 {
 	int	i;
 	int	j;
 
-	i = y - 1;
+	i = orig.y - 1;
 	j = 0;
-	while (i++ < size + y - 1)
+	while (i++ < wid + orig.y - 1)
 	{
-		j = x - 1;
-		while (j++ < size + x - 1)
-			pixel_put(data, j, i, color);
+		j = orig.x - 1;
+		while (j++ < hgt + orig.x - 1)
+			pixel_put(data, i, j, color);
 	}
 	printf("(%i;%i)\n", j - 1, i - 1);
+}
+
+void	draw_square(t_window *data, t_pnt orig, int size, int color)
+{
+	draw_rectangle(data, orig, size, size, color);
 }

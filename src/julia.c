@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/17 16:15:26 by loichu           ###   ########.fr       */
+/*   Created: 2022/05/17 13:58:43 by loichu            #+#    #+#             */
+/*   Updated: 2022/05/17 15:08:48 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int	main(void)
+void	draw_julia(t_window *data, t_cnb c)
 {
-	t_window	*img;
+	int		max_iter;
+	t_cnb	z;
 
-	img = init_window(1920, 1080, 0x00FFFFFF, "Fract'ol");
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
-	mlx_loop(img->mlx);
-	return (0);
+	max_iter = 255;
 }
