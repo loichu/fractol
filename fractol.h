@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/17 16:52:15 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/17 23:48:14 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@ t_window	*init_window(int width, int height, int bg_color, char *title);
 // draw_utils.c
 void	pixel_put(t_window *data, int x, int y, int color);
 
+// math_utils,c
+double	pow2(double nb);
+
 // julia.c
 void	draw_julia(t_window *data, t_cnb c);
+
+// mandlebrot.c
+void	draw_mandlebrot(t_window *data);
 
 // circle.c
 void	draw_circle_oct(t_window *data, int xc, int yc, int x, int y, int color);
