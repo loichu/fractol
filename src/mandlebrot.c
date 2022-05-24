@@ -6,13 +6,13 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 23:19:02 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/18 00:10:47 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/24 16:37:51 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	draw_mandlebrot(t_window *data)
+void	draw_mandlebrot(t_image *img)
 {
 	int			w;
 	int			h;
@@ -26,7 +26,6 @@ void	draw_mandlebrot(t_window *data)
 
 	w = 1920;
 	h = 1080;
-	//c = (t_cnb){.real = -1.5, .imag = 
 	max_iter = 255;
 	x = -1;
 	while (++x < w)
@@ -46,9 +45,9 @@ void	draw_mandlebrot(t_window *data)
 				i--;
 			}
 			if (x == w/2 || y == h/2)
-				pixel_put(data, x, y, 0x00FF0000);
+				pixel_put(img, x, y, 0x00FF0000);
 			else
-				pixel_put(data, x, y, (i << 21) + (i << 10) + i*8);
+				pixel_put(img, x, y, (i << 21) + (i << 10) + i*8);
 		}
 	}
 }

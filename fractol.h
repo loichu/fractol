@@ -6,10 +6,11 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/24 14:38:22 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/24 16:38:38 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include <math.h>
 #include <stdio.h>
 #include <mlx.h>

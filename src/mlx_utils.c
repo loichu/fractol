@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 14:16:09 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/24 14:34:58 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/24 22:52:42 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	put_image_to_window(t_image *img, t_window *win)
 		mlx_destroy_image(win->mlx, win->img->img);
 		free(win->img);
 	}
+	printf("debug before\n");
 	mlx_put_image_to_window(win->mlx, win->win, img->img, 0, 0);
+	printf("debug after\n");
 	win->img = img;
 }

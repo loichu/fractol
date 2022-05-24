@@ -6,13 +6,13 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:58:43 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/17 23:49:27 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/24 22:54:08 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	draw_julia(t_window *data, t_cnb c)
+void	draw_julia(t_image *img, t_cnb c)
 {
 	int			w;
 	int			h;
@@ -42,7 +42,10 @@ void	draw_julia(t_window *data, t_cnb c)
 				z.real = tmp;
 				i--;
 			}
-			pixel_put(data, x, y, (i << 21) + (i << 10) + i*8);
+			//printf("Will put pixel");
+			pixel_put(img, x, y, (i << 21) + (i << 10) + i*8);
+			//printf("%i %i\n", x, y);
 		}
 	}
+	printf("(%i;%i)\n", w, h);
 }
