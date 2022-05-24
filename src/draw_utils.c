@@ -6,16 +6,16 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:18:57 by loichu            #+#    #+#             */
-/*   Updated: 2022/04/26 17:28:27 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/24 14:39:09 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	pixel_put(t_window *data, int x, int y, int color)
+void	pixel_put(t_image *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
