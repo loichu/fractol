@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:43:00 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 21:39:06 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/31 21:48:59 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ double	decimal_part(char *nb)
 	double	res;
 	int		mult;
 
-	printf("%s\n", nb);
 	res = 0;
 	mult = 10;
 	while (ft_isdigit(*nb))
@@ -41,15 +40,16 @@ double	ft_atof(char *nb)
 	char	**split;
 	double	res;
 
+	sign = 1;
 	if (*nb == '-')
 		sign = -1;
 	if (*nb == '+' || *nb == '-')
 		nb++;
-	sign = 1;
 	split = ft_split(nb, '.');
 	res = integer_part(*split++, 0);
 	if (*split)
 		res += decimal_part(*split);
+	printf("sign: %i\n", sign);
 	return (res * sign);
 }
 

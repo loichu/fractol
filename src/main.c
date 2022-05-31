@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 20:04:02 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:39:46 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ t_settings	*parse_args(int nb_args, char **args)
 		settings->fractal = Julia;
 	else
 		print_usage_and_exit(settings);
-	printf("debug\n");
 	if (settings->fractal == Julia && nb_args > 1)
 		settings->c = ft_atoc(*(++args));
 	else
