@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 21:56:46 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/31 21:59:00 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 	if (settings->fractal == Mandlebrot)
 		draw_mandlebrot(img);
 	else
-		exit(1);
+		draw_julia(img, settings->c);
 	put_image_to_window(img, win);
 	mlx_loop(win->mlx);
 	free(img);
