@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/31 16:38:36 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:00:57 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 #include <stdio.h>
 #include <mlx.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef	enum	e_fractal {
 	Julia,
 	Mandlebrot
 }	t_fractal;
+
+typedef struct	s_cnb
+{
+	double	real;
+	double	imag;
+}	t_cnb;
 
 typedef struct	s_image {
 	void	*img;
@@ -42,13 +49,8 @@ typedef	struct	s_settings {
 	int			width;
 	int			height;
 	t_fractal	fractal;
+	t_cnb		c;
 }	t_settings;
-
-typedef struct	s_cnb
-{
-	double	real;
-	double	imag;
-}	t_cnb;
 
 typedef struct	s_pnt
 {
@@ -66,6 +68,9 @@ void	pixel_put(t_image *data, int x, int y, int color);
 
 // math_utils,c
 double	pow2(double nb);
+
+// atoc.c
+t_cnb	ft_atoc(char *cnb);
 
 // julia.c
 void	draw_julia(t_image *img, t_cnb c);

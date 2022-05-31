@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/05/17 23:49:58 by loichu           ###   ########.fr        #
+#    Updated: 2022/05/31 19:58:34 by lhumbert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ AUTHOR		= loichu
 DATE		= 06/04/2022
 
 SRCS		= mlx_utils.c draw_utils.c circle.c rectangle.c julia.c mandlebrot.c \
-			  math_utils.c
+			  math_utils.c atoc.c
 			  
 MAIN		= main.c
 
