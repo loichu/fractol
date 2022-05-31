@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:43:00 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 20:22:05 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:37:36 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 int		integer_part(char *nb, int res)
 {
+	printf("integer part: %s %i\n", nb, res);
 	if (ft_isdigit(*nb))
-		return (integer_part(nb + 1, res * 10 + 48 - *nb));
+		return (integer_part(nb + 1, res * 10 + (*nb - 48)));
 	return (res);
 }
 
-//double	decimal_part(char *nb, double res)
 double	decimal_part(char *nb)
 {
-	//if (ft_isdigit(*nb))
-	//	return (decimal_part(nb + 1, (res + 48 - *nb) / 10));
-	//return (res);
 	double	res;
+	int		mult;
 
+	printf("%s\n", nb);
 	res = 0;
+	mult = 10;
 	while (ft_isdigit(*nb))
 	{
-		res += 48 - *nb++;
-		res /= 10;
+		res += (double)(*nb++ - 48) / mult;
+		mult *= 10;
 	}
 	return (res);
 }
@@ -49,8 +49,9 @@ double	ft_atof(char *nb)
 	sign = 1;
 	split = ft_split(nb, '.');
 	res = integer_part(*split++, 0);
-	//res += decimal_part(*split, 0);
-	res += decimal_part(*split);
+	if (*split)
+		res += decimal_part(*split);
+	printf("float computed\n");
 	return (res * sign);
 }
 
@@ -97,6 +98,8 @@ t_cnb	ft_atoc(char *cnb)
 		while (ft_isdigit(*cnb))
 			cnb++;
 	}
+	printf("imag\n");
 	res.imag = ft_atof(cnb);
+	printf("end\n");
 	return (res);
 }
