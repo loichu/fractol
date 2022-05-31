@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:43:00 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 21:37:36 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/31 21:39:06 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		integer_part(char *nb, int res)
 {
-	printf("integer part: %s %i\n", nb, res);
 	if (ft_isdigit(*nb))
 		return (integer_part(nb + 1, res * 10 + (*nb - 48)));
 	return (res);
@@ -51,31 +50,25 @@ double	ft_atof(char *nb)
 	res = integer_part(*split++, 0);
 	if (*split)
 		res += decimal_part(*split);
-	printf("float computed\n");
 	return (res * sign);
 }
 
 bool	check_format(char *cnb, bool is_real)
 {
-	//printf("begin %s\n", cnb);
 	if (*cnb == '+' || *cnb == '-')
 		cnb++;
-	//printf("digit %s\n", cnb);
 	if (!ft_isdigit(*cnb))
 		return (false);
 	while (ft_isdigit(*cnb))
 		cnb++;
 	if (*cnb == '.')
 	{
-		//printf("point %s\n", cnb);
 		cnb++;
 		while (ft_isdigit(*cnb))
 			cnb++;
 	}
-	//printf("imaginary %s\n", cnb);
 	if (is_real && *cnb != '+' && *cnb != '-')
 		return (false);
-	//printf("imaginary %s\n", cnb);
 	if (is_real)
 		return (check_format(cnb, false));
 	return (*cnb == 'i');
@@ -98,8 +91,6 @@ t_cnb	ft_atoc(char *cnb)
 		while (ft_isdigit(*cnb))
 			cnb++;
 	}
-	printf("imag\n");
 	res.imag = ft_atof(cnb);
-	printf("end\n");
 	return (res);
 }
