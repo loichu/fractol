@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 21:59:00 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/31 22:47:36 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	print_usage_and_exit(t_settings *settings)
 	ft_putendl_fd("\t* -0.52+0.57i", 1);
 	ft_putendl_fd("\t* 0.295+0.55i", 1);
 	ft_putendl_fd("\t* -0.624+0.435i", 1);
-	ft_putendl_fd("\nOptions:", 1);
-	ft_putendl_fd("\t-res r\t\tdefault: 1920x1080", 1);
 	if (settings)
 		free(settings);
 	exit(1);
