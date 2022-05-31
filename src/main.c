@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 21:39:46 by loichu           ###   ########.fr       */
+/*   Updated: 2022/05/31 21:56:46 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,45 +30,6 @@ void	print_usage_and_exit(t_settings *settings)
 		free(settings);
 	exit(1);
 }
-
-//double	ft_atof(char *nb)
-//{
-//	//bool	is_neg;
-//	double	res;
-//	//double	dec;
-//	char	**split;
-//	int		i;
-//
-//	printf("debug atof\n");
-//	split = ft_split(nb, '.');
-//	res = ft_atoi(*split++);
-//	if(*split && ft_isdigit(**split))
-//	{
-//		i = 0;
-//		while(ft_isdigit((*split)[i]))
-//			i++;
-//		res += ft_atoi(*split) / (10 * i); 
-//	}
-//	free(--split);
-//	printf("%f\n", res);
-//	return (res);
-//}
-
-//t_cnb	parse_julia_c(char *c)
-//{
-//	char	**split;
-//	t_cnb	cnb;
-//
-//	split = ft_split(c, '+');
-//	printf("real part: %s\n", *split);
-//	cnb.real = ft_atof(*split++);
-//	printf("real part: %f\n", cnb.real);
-//	if (*split)
-//		cnb.imag = ft_atof(*split);
-//	else
-//		cnb.imag = 0;
-//	return (cnb);
-//}
 
 t_settings	*parse_args(int nb_args, char **args)
 {
