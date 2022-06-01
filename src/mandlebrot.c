@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 23:19:02 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/24 16:37:51 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/01 14:35:16 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	draw_mandlebrot(t_image *img)
 		y = -1;
 		while (++y < h)
 		{
-			c.real = 1.5 * (x - w/2)/(w/2);
-			c.imag = 1.0 * (y - h/2)/(h/2);
+			c.real = 2.5 * (x - w/2)/(w/2);
+			c.imag = 2.0 * (y - h/2)/(h/2);
 			z = (t_cnb){.real = 0, .imag = 0};
 			i = max_iter;
 			while (pow2(z.real) + pow2(z.imag) < 4 && i > 1)

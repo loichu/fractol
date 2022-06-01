@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/01 13:28:24 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:30:02 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ typedef struct	s_image {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int			width;
+	int			height;
 }	t_image;
 
 typedef	struct	s_window {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-	int			width;
-	int			height;
 	t_fractal	fractal;
 }	t_window;
 
@@ -59,9 +59,16 @@ typedef struct	s_pnt
 	int	y;
 }	t_pnt;
 
+typedef struct	s_cplan	
+{
+	double	x_max;
+	double	zoom;
+	t_pnt	center;
+}	t_cplan;
+
 // mlx_utils.c
 t_window	*init_window(t_settings settings);
-t_image		*init_image(t_window *win, int bg_color);
+t_image		*init_image(t_window *win, t_settings settings);
 void		put_image_to_window(t_image *img, t_window *win);
 
 // draw_utils.c

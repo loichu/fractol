@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/01 13:45:47 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:31:34 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ int	main(int argc, char **argv)
 	t_settings	settings;
 	t_window	*win;
 	t_image		*img;
+	t_cplan		cplan;
 
+	cplan.x_max = 2.5;
+	cplan.zoom = 1;
+	cplan.center = (t_pnt){.x=0, .y=0};
 	settings = parse_args(argc - 1, &(argv[1]));
 	printf("init window\n");
 	win = init_window(settings);
-	img = init_image(win, 0x000000FF);
+	img = init_image(win, settings);
 	if (settings.fractal == Mandlebrot)
 		draw_mandlebrot(img);
 	else
