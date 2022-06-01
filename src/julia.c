@@ -6,34 +6,34 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:58:43 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/24 22:54:08 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/01 17:16:37 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	draw_julia(t_image *img, t_cnb c)
+void	draw_julia(t_image *img, t_cplan plan, t_cnb c)
 {
-	int			w;
-	int			h;
-	int			x;
-	int			y;
+	//int			w;
+	//int			h;
+	//int			x;
+	//int			y;
+	t_pnt		pxl;
 	int			i;
 	double		tmp;
 	int			max_iter;
 	t_cnb		z;
 
-	w = 1920;
-	h = 1080;
+	//w = 1920;
+	//h = 1080;
 	max_iter = 255;
-	x = -1;
-	while (++x < w)
+	pxl = (t_pnt){.x=-1, .y=-1};
+	while (++(pxl.x) < img->width)
 	{
-		y = -1;
-		while (++y < h)
+		pxl.y = -1;
+		while (++(pxl.y) < img->height)
 		{
-			z.real = 1.5*(x - w/2)/(w/2);
-			z.imag = 1.0*(y - h/2)/(h/2);
+			z = proj_cplx_plan(pxl, plan, img);
 			i = max_iter;
 			while (pow2(z.real) + pow2(z.imag) < 4 && i > 1)
 			{
@@ -42,10 +42,7 @@ void	draw_julia(t_image *img, t_cnb c)
 				z.real = tmp;
 				i--;
 			}
-			//printf("Will put pixel");
-			pixel_put(img, x, y, (i << 21) + (i << 10) + i*8);
-			//printf("%i %i\n", x, y);
+			pixel_put(img, pxl.x, pxl.y, (i << 21) + (i << 10) + i*8);
 		}
 	}
-	printf("(%i;%i)\n", w, h);
 }

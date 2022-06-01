@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/01 14:30:02 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:35:27 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_pnt
 typedef struct	s_cplan	
 {
 	double	x_max;
+	double	y_max;
 	double	zoom;
 	t_pnt	center;
 }	t_cplan;
@@ -80,8 +81,11 @@ double	pow2(double nb);
 // atoc.c
 t_cnb	ft_atoc(char *cnb);
 
+// fractal.c
+t_cnb	proj_cplx_plan(t_pnt pxl, t_cplan plan, t_image *img);
+
 // julia.c
-void	draw_julia(t_image *img, t_cnb c);
+void	draw_julia(t_image *img, t_cplan plan, t_cnb c);
 
 // mandlebrot.c
 void	draw_mandlebrot(t_image *img);

@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/01 14:31:34 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:20:34 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,18 @@ int	main(int argc, char **argv)
 	t_image		*img;
 	t_cplan		cplan;
 
+	settings = parse_args(argc - 1, &(argv[1]));
 	cplan.x_max = 2.5;
 	cplan.zoom = 1;
-	cplan.center = (t_pnt){.x=0, .y=0};
-	settings = parse_args(argc - 1, &(argv[1]));
-	printf("init window\n");
+	cplan.center = (t_pnt){.x=-1, .y=1};
+	cplan.y_max = cplan.x_max
+		/ ((double)settings.width / (double)settings.height);
 	win = init_window(settings);
 	img = init_image(win, settings);
 	if (settings.fractal == Mandlebrot)
 		draw_mandlebrot(img);
 	else
-		draw_julia(img, settings.c);
+		draw_julia(img, cplan, settings.c);
 	put_image_to_window(img, win);
 	mlx_loop(win->mlx);
 	free(img);

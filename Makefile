@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/05/31 19:58:34 by lhumbert         ###   ########.fr        #
+#    Updated: 2022/06/01 16:54:08 by lhumbert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ AUTHOR		= loichu
 DATE		= 06/04/2022
 
 SRCS		= mlx_utils.c draw_utils.c circle.c rectangle.c julia.c mandlebrot.c \
-			  math_utils.c atoc.c
+			  math_utils.c atoc.c fractal.c
 			  
 MAIN		= main.c
 
@@ -43,7 +43,8 @@ LIBFT		= libft.a
 LIBFT_DIR	= libft
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
+#CFLAGS		= -Wall -Wextra -Werror -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
+CFLAGS		= -Wall -Wextra -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
 DBG_FLAGS	= -g -fsanitize=address
 
 ################################################################################
