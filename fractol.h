@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/05/31 20:00:57 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:28:24 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef	struct	s_settings {
 	int			height;
 	t_fractal	fractal;
 	t_cnb		c;
+	char		*title;
 }	t_settings;
 
 typedef struct	s_pnt
@@ -59,7 +60,7 @@ typedef struct	s_pnt
 }	t_pnt;
 
 // mlx_utils.c
-t_window	*init_window(int width, int height, char *title);
+t_window	*init_window(t_settings settings);
 t_image		*init_image(t_window *win, int bg_color);
 void		put_image_to_window(t_image *img, t_window *win);
 
