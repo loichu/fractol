@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/02 10:20:34 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/02 11:23:38 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	main(int argc, char **argv)
 	t_cplan		cplan;
 
 	settings = parse_args(argc - 1, &(argv[1]));
-	cplan.x_max = 2.5;
+	cplan.x_max = 2.1;
 	cplan.zoom = 1;
-	cplan.center = (t_pnt){.x=-1, .y=1};
+	cplan.center = (struct s_center){.x=-0.6, .y=0};
 	cplan.y_max = cplan.x_max
 		/ ((double)settings.width / (double)settings.height);
 	win = init_window(settings);

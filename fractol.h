@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/02 10:20:03 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/02 11:20:38 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ typedef struct	s_cplan
 	double	x_max;
 	double	y_max;
 	double	zoom;
-	t_pnt	center;
+	struct	s_center
+	{
+		double	x;
+		double	y;
+	}	center;
 }	t_cplan;
 
 // mlx_utils.c
