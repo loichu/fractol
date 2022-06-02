@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:58:43 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/01 17:16:37 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:04:27 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,12 @@
 
 void	draw_julia(t_image *img, t_cplan plan, t_cnb c)
 {
-	//int			w;
-	//int			h;
-	//int			x;
-	//int			y;
 	t_pnt		pxl;
 	int			i;
 	double		tmp;
 	int			max_iter;
 	t_cnb		z;
 
-	//w = 1920;
-	//h = 1080;
 	max_iter = 255;
 	pxl = (t_pnt){.x=-1, .y=-1};
 	while (++(pxl.x) < img->width)

@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/01 15:35:27 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:20:03 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_cnb	proj_cplx_plan(t_pnt pxl, t_cplan plan, t_image *img);
 void	draw_julia(t_image *img, t_cplan plan, t_cnb c);
 
 // mandlebrot.c
-void	draw_mandlebrot(t_image *img);
+void	draw_mandlebrot(t_image *img, t_cplan plan);
 
 // circle.c
 void	draw_circle_oct(t_image *img, int xc, int yc, int x, int y, int color);
