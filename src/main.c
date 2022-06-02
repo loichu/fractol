@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/03 00:11:31 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/03 00:38:25 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,24 @@ int handle_close(t_window *win)
 
 int	handle_mouse(int btn, int x, int y, t_window *win)
 {
-	printf("test\n");
-	printf("scroll in window %p\n", win);
+	t_image	*img;
+	//printf("test\n");
+	//printf("scroll in window %p\n", win);
 	//printf("Fractal: %i\n", win->fractal);
 	//printf("c: %f + %fi\n", win->c.real, win->c.imag);
 	//printf("zoom: %f\n", win->plan.zoom);
-	//if (mouse_code == 4)
-	//	win->plan.zoom += 5;
-	//if (mouse_code == 5)
-	//	win->plan.zoom -= 5;
-	//if (win->fractal == Julia)
-	//	draw_julia(win->img, win->plan, win->c);
-	//else
-	//	draw_mandlebrot(win->img, win->plan);
+	if (btn == 4)
+		win->plan.zoom += 5;
+	else if (btn == 5)
+		win->plan.zoom -= 5;
+	else
+		return (1);
+	img = init_image(win);
+	if (win->fractal == Julia)
+		draw_julia(img, win->plan, win->c);
+	else
+		draw_mandlebrot(img, win->plan);
+	put_image_to_window(img, win);
 	return(0);
 }
 
@@ -103,17 +108,19 @@ int	main(int argc, char **argv)
 	settings = parse_args(argc - 1, &(argv[1]));
 	win = init_window(settings);
 	printf("zoom: %f\n", win->plan.zoom);
-	img = init_image(win, settings);
+	img = init_image(win);
 	mlx_hook(win->win, 2, 1L<<0, handle_keydown, win);
 	mlx_hook(win->win, 17, 0L, handle_close, win);
 	printf("window initialized %p\n", win);
-	mlx_hook(win->win, 4, 0L, handle_mouse, win);
-	//mlx_mouse_hook(win->win, handle_mouse, win);
+	//mlx_hook(win->win, 4, 0L, handle_mouse, win);
+	mlx_mouse_hook(win->win, handle_mouse, win);
 	if (settings.fractal == Mandlebrot)
 		draw_mandlebrot(img, win->plan);
 	else
 		draw_julia(img, win->plan, settings.c);
+	printf("BEFORE\n");
 	put_image_to_window(img, win);
+	printf("AFTER\n");
 	mlx_loop(win->mlx);
 	return (terminate(win));
 }

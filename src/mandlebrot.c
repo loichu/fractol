@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 23:19:02 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/02 19:03:18 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/03 00:39:26 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	draw_mandlebrot(t_image *img, t_cplan plan)
 		}
 		pxl.y = -1;
 	}
-	printf("drew mandlebrot\n");
+	//printf("drew mandlebrot\n");
 }
