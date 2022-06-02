@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:14:08 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/02 12:49:08 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:32:44 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ t_cnb	proj_cplx_plan(t_pnt pxl, t_cplan plan, t_image *img)
 	return (res);
 }
 
-int	get_nb_iter(t_cnb z, t_cnb c)
+int	get_max_iter(int zoom)
+{
+	if (zoom < 300)
+		return (128 << (int)(zoom / 100));
+	return (1024);
+}
+
+int	get_nb_iter(t_cnb z, t_cnb c, int iter_max)
 {
 	int		i;
 	t_cnb	next_z;
@@ -37,7 +44,7 @@ int	get_nb_iter(t_cnb z, t_cnb c)
 	real2 = z.real * z.real;
 	imag2 = z.imag * z.imag;
 	i = 0;
-	while (real2 + imag2 < 4 && i++ < 255)
+	while (real2 + imag2 < 4 && i++ < iter_max)
 	{
 		next_z.real = real2 - imag2 + c.real;
 		next_z.imag = 2 * z.real * z.imag + c.imag;

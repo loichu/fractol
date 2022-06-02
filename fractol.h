@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/02 11:54:27 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:32:30 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ t_cnb	ft_atoc(char *cnb);
 
 // fractal.c
 t_cnb	proj_cplx_plan(t_pnt pxl, t_cplan plan, t_image *img);
-int		get_nb_iter(t_cnb z, t_cnb c);
+int		get_max_iter(int zoom);
+int		get_nb_iter(t_cnb z, t_cnb c, int iter_max);
 
 // julia.c
 void	draw_julia(t_image *img, t_cplan plan, t_cnb c);
