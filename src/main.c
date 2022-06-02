@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/02 13:31:42 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/03 00:11:31 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,68 @@ t_settings	parse_args(int nb_args, char **args)
 	return (settings);
 }
 
+int	terminate(t_window *win)
+{
+	destroy_curr_img(win);
+	mlx_destroy_window(win->mlx, win->win);
+	free(win);
+	return (0);
+}
+
+int	handle_keydown(int key, t_window *win)
+{
+	//printf("%x\n", key);
+	printf("keydown in window %p\n", win);
+	if (key == 0xff1b)
+		exit(terminate(win));
+	return(0);
+}
+
+int handle_close(t_window *win)
+{
+	//printf("close\n");
+	exit(terminate(win));
+	return (0);
+}
+
+int	handle_mouse(int btn, int x, int y, t_window *win)
+{
+	printf("test\n");
+	printf("scroll in window %p\n", win);
+	//printf("Fractal: %i\n", win->fractal);
+	//printf("c: %f + %fi\n", win->c.real, win->c.imag);
+	//printf("zoom: %f\n", win->plan.zoom);
+	//if (mouse_code == 4)
+	//	win->plan.zoom += 5;
+	//if (mouse_code == 5)
+	//	win->plan.zoom -= 5;
+	//if (win->fractal == Julia)
+	//	draw_julia(win->img, win->plan, win->c);
+	//else
+	//	draw_mandlebrot(win->img, win->plan);
+	return(0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_settings	settings;
 	t_window	*win;
 	t_image		*img;
-	t_cplan		cplan;
 
 	settings = parse_args(argc - 1, &(argv[1]));
-	cplan.x_max = 2.1;
-	cplan.zoom = 1;
-	//cplan.center = (struct s_center){.x=0, .y=0};
-	//cplan.center = (struct s_center){.x=-0.6, .y=0}; // Good base center for Mandlebrot
-	cplan.center = (struct s_center){.x=-0.735, .y=-0.24}; // Good zoom center for Mandlebrot
-	cplan.y_max = cplan.x_max
-		/ ((double)settings.width / (double)settings.height);
 	win = init_window(settings);
+	printf("zoom: %f\n", win->plan.zoom);
 	img = init_image(win, settings);
+	mlx_hook(win->win, 2, 1L<<0, handle_keydown, win);
+	mlx_hook(win->win, 17, 0L, handle_close, win);
+	printf("window initialized %p\n", win);
+	mlx_hook(win->win, 4, 0L, handle_mouse, win);
+	//mlx_mouse_hook(win->win, handle_mouse, win);
 	if (settings.fractal == Mandlebrot)
-		draw_mandlebrot(img, cplan);
+		draw_mandlebrot(img, win->plan);
 	else
-		draw_julia(img, cplan, settings.c);
+		draw_julia(img, win->plan, settings.c);
 	put_image_to_window(img, win);
 	mlx_loop(win->mlx);
-	free(img);
-	return (0);
+	return (terminate(win));
 }
