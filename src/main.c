@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/02 11:23:38 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/02 12:15:18 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ int	main(int argc, char **argv)
 
 	settings = parse_args(argc - 1, &(argv[1]));
 	cplan.x_max = 2.1;
-	cplan.zoom = 1;
-	cplan.center = (struct s_center){.x=-0.6, .y=0};
+	cplan.zoom = 300;
+	//cplan.center = (struct s_center){.x=-0.6, .y=0}; // Good base center for Mandlebrot
+	cplan.center = (struct s_center){.x=-0.735, .y=-0.24}; // Good zoom center for Mandlebrot
 	cplan.y_max = cplan.x_max
 		/ ((double)settings.width / (double)settings.height);
 	win = init_window(settings);
