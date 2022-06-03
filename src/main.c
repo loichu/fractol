@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/03 15:25:54 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:42:27 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,28 @@ int	terminate(t_window *win)
 
 int	handle_keydown(int key, t_window *win)
 {
-	printf("%x\n", key);
-	printf("keydown in window %p\n", win);
+	t_image	*img;
+	//printf("%x\n", key);
+	//printf("keydown in window %p\n", win);
 	//if (key == 0xff1b)
 	if (key == 0x35)
 		exit(terminate(win));
+	else if (key == 0x7b)
+		win->plan.center.x -= 0.5 / win->plan.zoom;
+	else if (key == 0x7e)
+		win->plan.center.y -= 0.5 / win->plan.zoom;
+	else if (key == 0x7d)
+		win->plan.center.y += 0.5 / win->plan.zoom;
+	else if (key == 0x7c)
+		win->plan.center.x += 0.5 / win->plan.zoom;
+	else
+		return (1);
+	img = init_image(win);
+	if (win->fractal == Julia)
+		draw_julia(img, win->plan, win->c);
+	else
+		draw_mandlebrot(img, win->plan);
+	put_image_to_window(img, win);
 	return(0);
 }
 
@@ -85,10 +102,10 @@ int	handle_mouse(int btn, int x, int y, t_window *win)
 	//printf("Fractal: %i\n", win->fractal);
 	//printf("c: %f + %fi\n", win->c.real, win->c.imag);
 	//printf("zoom: %f\n", win->plan.zoom);
-	if (btn == 4)
-		win->plan.zoom += 5;
-	else if (btn == 5)
-		win->plan.zoom -= 5;
+	if (btn == 5 && win->plan.zoom < 100000)
+		win->plan.zoom *= 2;
+	else if (btn == 4 && win->plan.zoom > 0.5)
+		win->plan.zoom /= 2;
 	else
 		return (1);
 	img = init_image(win);
