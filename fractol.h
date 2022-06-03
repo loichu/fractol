@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/03 17:40:22 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/03 19:11:17 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_cnb	ft_atoc(char *cnb);
 t_cnb	proj_cplx_plan(t_pnt pxl, t_cplan plan, t_image *img);
 int		get_max_iter(int zoom);
 int		get_nb_iter(t_cnb z, t_cnb c, int iter_max);
-int		get_pixel_color(int nb_iter);
+int		get_pixel_color(int nb_iter, int iter_max);
 
 // julia.c
 void	draw_julia(t_image *img, t_cplan plan, t_cnb c);
