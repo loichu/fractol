@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/03 00:38:25 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/03 15:25:54 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ t_settings	parse_args(int nb_args, char **args)
 	settings.title = "Fract'ol - Mandlebrot";
 	if (settings.fractal == Julia)
 		settings.title = "Fract'ol - Julia";
-	settings.width = 1920;
-	settings.height = 1080;
+	settings.width = 720;
+	settings.height = 720;
 	return (settings);
 }
 
@@ -62,9 +62,10 @@ int	terminate(t_window *win)
 
 int	handle_keydown(int key, t_window *win)
 {
-	//printf("%x\n", key);
+	printf("%x\n", key);
 	printf("keydown in window %p\n", win);
-	if (key == 0xff1b)
+	//if (key == 0xff1b)
+	if (key == 0x35)
 		exit(terminate(win));
 	return(0);
 }
