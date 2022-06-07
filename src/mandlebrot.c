@@ -6,7 +6,7 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 23:19:02 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/03 19:11:02 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:30:06 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_mandlebrot(t_image *img, t_cplan plan)
 	int		iter_max;
 
 	iter_max = get_max_iter(plan.zoom);
-	pxl = (t_pnt){.x=-1, .y=-1};
+	pxl = (t_pnt){.x = -1, .y = -1};
 	while (++(pxl.x) < img->width)
 	{
 		while (++(pxl.y) < img->height)

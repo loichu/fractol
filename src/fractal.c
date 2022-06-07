@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:14:08 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/03 19:20:41 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:53:32 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_cnb	proj_cplx_plan(t_pnt pxl, t_cplan plan, t_image *img)
 
 int	get_max_iter(int zoom)
 {
-	//return (256);
 	if (zoom < 500)
 		return (64 + 0.75 * zoom);
 	return (512);

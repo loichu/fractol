@@ -6,12 +6,11 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/03 18:42:27 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:01:01 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
-#include <unistd.h>
 
 void	print_usage_and_exit(void)
 {
@@ -42,8 +41,7 @@ t_settings	parse_args(int nb_args, char **args)
 	if (settings.fractal == Julia && nb_args > 1)
 		settings.c = ft_atoc(*(++args));
 	else
-		settings.c = (t_cnb){.real=0, .imag=0};
-	printf("c = %f + %fi\n", settings.c.real, settings.c.imag);
+		settings.c = (t_cnb){.real = 0, .imag = 0};
 	settings.title = "Fract'ol - Mandlebrot";
 	if (settings.fractal == Julia)
 		settings.title = "Fract'ol - Julia";
@@ -60,63 +58,6 @@ int	terminate(t_window *win)
 	return (0);
 }
 
-int	handle_keydown(int key, t_window *win)
-{
-	t_image	*img;
-	//printf("%x\n", key);
-	//printf("keydown in window %p\n", win);
-	//if (key == 0xff1b)
-	if (key == 0x35)
-		exit(terminate(win));
-	else if (key == 0x7b)
-		win->plan.center.x -= 0.5 / win->plan.zoom;
-	else if (key == 0x7e)
-		win->plan.center.y -= 0.5 / win->plan.zoom;
-	else if (key == 0x7d)
-		win->plan.center.y += 0.5 / win->plan.zoom;
-	else if (key == 0x7c)
-		win->plan.center.x += 0.5 / win->plan.zoom;
-	else
-		return (1);
-	img = init_image(win);
-	if (win->fractal == Julia)
-		draw_julia(img, win->plan, win->c);
-	else
-		draw_mandlebrot(img, win->plan);
-	put_image_to_window(img, win);
-	return(0);
-}
-
-int handle_close(t_window *win)
-{
-	//printf("close\n");
-	exit(terminate(win));
-	return (0);
-}
-
-int	handle_mouse(int btn, int x, int y, t_window *win)
-{
-	t_image	*img;
-	//printf("test\n");
-	//printf("scroll in window %p\n", win);
-	//printf("Fractal: %i\n", win->fractal);
-	//printf("c: %f + %fi\n", win->c.real, win->c.imag);
-	//printf("zoom: %f\n", win->plan.zoom);
-	if (btn == 5 && win->plan.zoom < 100000)
-		win->plan.zoom *= 2;
-	else if (btn == 4 && win->plan.zoom > 0.5)
-		win->plan.zoom /= 2;
-	else
-		return (1);
-	img = init_image(win);
-	if (win->fractal == Julia)
-		draw_julia(img, win->plan, win->c);
-	else
-		draw_mandlebrot(img, win->plan);
-	put_image_to_window(img, win);
-	return(0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_settings	settings;
@@ -125,20 +66,15 @@ int	main(int argc, char **argv)
 
 	settings = parse_args(argc - 1, &(argv[1]));
 	win = init_window(settings);
-	printf("zoom: %f\n", win->plan.zoom);
 	img = init_image(win);
-	mlx_hook(win->win, 2, 1L<<0, handle_keydown, win);
+	mlx_hook(win->win, 2, 1L << 0, handle_keydown, win);
 	mlx_hook(win->win, 17, 0L, handle_close, win);
-	printf("window initialized %p\n", win);
-	//mlx_hook(win->win, 4, 0L, handle_mouse, win);
 	mlx_mouse_hook(win->win, handle_mouse, win);
 	if (settings.fractal == Mandlebrot)
 		draw_mandlebrot(img, win->plan);
 	else
 		draw_julia(img, win->plan, settings.c);
-	printf("BEFORE\n");
 	put_image_to_window(img, win);
-	printf("AFTER\n");
 	mlx_loop(win->mlx);
 	return (terminate(win));
 }

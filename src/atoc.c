@@ -6,13 +6,13 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:43:00 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/05/31 21:55:35 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:56:37 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int		integer_part(char *nb, int res)
+int	integer_part(char *nb, int res)
 {
 	if (ft_isdigit(*nb))
 		return (integer_part(nb + 1, res * 10 + (*nb - 48)));
@@ -78,7 +78,7 @@ t_cnb	ft_atoc(char *cnb)
 	t_cnb	res;
 
 	if (!check_format(cnb, true))
-		return ((t_cnb){.real=0, .imag=0});
+		return ((t_cnb){.real = 0, .imag = 0});
 	res.real = ft_atof(cnb);
 	if (*cnb == '+' || *cnb == '-')
 		cnb++;

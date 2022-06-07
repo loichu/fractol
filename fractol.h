@@ -6,16 +6,16 @@
 /*   By: loichu <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:48:59 by loichu            #+#    #+#             */
-/*   Updated: 2022/06/03 19:11:17 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:00:56 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <math.h>
-#include <stdio.h>
 #include <mlx.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 typedef	enum	e_fractal {
 	Julia,
@@ -81,11 +81,16 @@ t_image		*init_image(t_window *win);
 void		put_image_to_window(t_image *img, t_window *win);
 void		destroy_curr_img(t_window *win);
 
+// main.c
+int	terminate(t_window *win);
+
+// events.c
+int	handle_keydown(int key, t_window *win);
+int	handle_close(t_window *win);
+int	handle_mouse(int btn, int x, int y, t_window *win);
+
 // draw_utils.c
 void	pixel_put(t_image *data, int x, int y, int color);
-
-// math_utils,c
-double	pow2(double nb);
 
 // atoc.c
 t_cnb	ft_atoc(char *cnb);
@@ -101,11 +106,3 @@ void	draw_julia(t_image *img, t_cplan plan, t_cnb c);
 
 // mandlebrot.c
 void	draw_mandlebrot(t_image *img, t_cplan plan);
-
-// circle.c
-void	draw_circle_oct(t_image *img, int xc, int yc, int x, int y, int color);
-void	draw_circle(t_image *img, int xc, int yc, int r, int color);
-
-// rectangle.c
-void	draw_square(t_image *img, t_pnt orig, int size, int color);
-void    draw_rectangle(t_image *img, t_pnt orig, int wid, int hgt, int color);
