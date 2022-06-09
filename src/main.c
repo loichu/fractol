@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/09 21:22:27 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/09 21:31:40 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	print_usage_and_exit(void)
 {
-	ft_putendl_fd("usage: fractol fract [options]", 1);
+	ft_putendl_fd("usage: fractol fract [C]", 1);
 	ft_putendl_fd("\nfract:\tMandlebrot", 1);
 	ft_putendl_fd("\tJulia <C>", 1);
-	ft_putendl_fd("\nIntersting C values for Julia:", 1);
+	ft_putendl_fd("\nInteresting C values for Julia:", 1);
 	ft_putendl_fd("\t* -0.7+0.2705i", 1);
 	ft_putendl_fd("\t* -1.037+0.17i", 1);
 	ft_putendl_fd("\t* -0.52+0.57i", 1);
