@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/06/09 18:57:54 by loichu           ###   ########.fr        #
+#    Updated: 2022/06/09 19:23:12 by loichu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,9 @@ fclean:			clean
 				@$(MAKE) -C $(LIBFT_DIR) fclean
 
 norminette:
-				norminette src
+				@python -m norminette src
+				@python -m norminette libft
+				@python -m norminette fractol.h
 
 $(LIBFT_DIR)/$(LIBFT):
 				@echo "Compiling libft with bonuses"
