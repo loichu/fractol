@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/06/08 18:41:55 by loichu           ###   ########.fr        #
+#    Updated: 2022/06/09 17:12:05 by loichu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ header:
 
 $(NAME):		$(OBJS) $(MAIN_OBJ)
 ifeq ($(OS),Linux)
-					$(CC) $(OBJS) $(MAIN_OBJ) -Lmlx_linux -lmlx_Linux \
+					$(CC) $(OBJS) $(MAIN_OBJ) -fsanitize=address -Lmlx_linux -lmlx_Linux \
 					   	-L/usr/lib -lXext -lX11 -lm -lz $(LIBFT_DIR)/$(LIBFT) \
 						-o $(NAME)
 else
@@ -98,7 +98,7 @@ endif
 obj/%.o:		$(SRCS_DIR)/%.c $(LIBFT_DIR)/$(LIBFT)
 				@mkdir -p $(dir $@)
 ifeq ($(OS),Linux)
-					$(CC) $(CFLAGS) $(MACROS) -I/usr/include -O3 -c $< -o $@
+					$(CC) $(CFLAGS) $(MACROS) -g -I/usr/include -O3 -c $< -o $@
 else
 					$(CC) $(CFLAGS) $(MACROS) -c $< -o $@
 endif

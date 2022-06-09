@@ -6,12 +6,14 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 19:41:24 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/10/25 20:49:57 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:00:27 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+
+#include <stdio.h>
 
 size_t	ft_cntparts(char const *s, char c)
 {
@@ -51,6 +53,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (*s)
 	{
+		printf("%s\n", s);
 		while (*s == c)
 			s++;
 		len = 0;

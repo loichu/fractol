@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/09 01:59:13 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/09 16:37:04 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ t_settings	parse_args(int nb_args, char **args)
 int	terminate(t_window *win)
 {
 	destroy_curr_img(win);
+	mlx_clear_window(win->mlx, win->win);
 	mlx_destroy_window(win->mlx, win->win);
+	mlx_destroy_display(win->mlx);
+    free(win->mlx);
 	free(win);
 	return (0);
 }
@@ -76,5 +79,6 @@ int	main(int argc, char **argv)
 		draw_julia(img, win->plan, settings.c);
 	put_image_to_window(img, win);
 	mlx_loop(win->mlx);
-	return (terminate(win));
+	terminate(win);
+	return (0);
 }
