@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/06/09 17:12:05 by loichu           ###   ########.fr        #
+#    Updated: 2022/06/09 18:57:54 by loichu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,8 +82,8 @@ header:
 			@printf "%b" "$(OBJ_COLOR)Date: 	$(WARN_COLOR)$(DATE)\n\033[m"
 			@printf "%b" "$(OBJ_COLOR)CC: 	$(WARN_COLOR)$(CC)\n\033[m"
 			@printf "%b" "$(OBJ_COLOR)Flags: 	$(WARN_COLOR)$(CFLAGS)\n\033[m"
+			@printf "%b" "$(OBJ_COLOR)Macros:	$(WARN_COLOR)$(MACROS)\n\033[m"
 			@echo
-			@echo $(MACROS)
 
 $(NAME):		$(OBJS) $(MAIN_OBJ)
 ifeq ($(OS),Linux)

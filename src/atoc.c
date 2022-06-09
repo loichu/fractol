@@ -12,8 +12,6 @@
 
 #include "../fractol.h"
 
-#include <stdio.h>
-
 int	integer_part(char const *nb, int res)
 {
 	while (ft_isdigit(*nb))
@@ -56,10 +54,7 @@ double	ft_atof(char *nb)
 		res += decimal_part(split[1]);
 	i = 0;
 	while (split[i])
-	{
-		printf("FREE %s\n", split[i]);
 		free(split[i++]);
-	}
 	free(split);
 	return (res * sign);
 }

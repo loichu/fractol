@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:55:42 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/09 16:37:04 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/09 18:16:29 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	terminate(t_window *win)
 	mlx_clear_window(win->mlx, win->win);
 	mlx_destroy_window(win->mlx, win->win);
 	mlx_destroy_display(win->mlx);
-    free(win->mlx);
+	free(win->mlx);
 	free(win);
 	return (0);
 }
