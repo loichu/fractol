@@ -6,29 +6,33 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:43:00 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/07 17:56:37 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:17:05 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int	integer_part(char *nb, int res)
+#include <stdio.h>
+
+int	integer_part(char const *nb, int res)
 {
 	if (ft_isdigit(*nb))
 		return (integer_part(nb + 1, res * 10 + (*nb - 48)));
 	return (res);
 }
 
-double	decimal_part(char *nb)
+double	decimal_part(char const *nb)
 {
 	double	res;
 	int		mult;
+	int		i;
 
 	res = 0;
 	mult = 10;
-	while (ft_isdigit(*nb))
+	i = 0;
+	while (ft_isdigit(nb[i]))
 	{
-		res += (double)(*nb++ - 48) / mult;
+		res += (double)(nb[i++] - 48) / mult;
 		mult *= 10;
 	}
 	return (res);
@@ -39,6 +43,7 @@ double	ft_atof(char *nb)
 	int		sign;
 	char	**split;
 	double	res;
+	int		i;
 
 	sign = 1;
 	if (*nb == '-')
@@ -46,9 +51,16 @@ double	ft_atof(char *nb)
 	if (*nb == '+' || *nb == '-')
 		nb++;
 	split = ft_split(nb, '.');
-	res = integer_part(*split++, 0);
-	if (*split)
-		res += decimal_part(*split);
+	res = integer_part(split[0], 0);
+	if (split[1])
+		res += decimal_part(split[1]);
+	i = 0;
+	while (split[i])
+	{
+		printf("FREE %s\n", split[i]);
+		free(split[i++]);
+	}
+	free(split);
 	return (res * sign);
 }
 
