@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/06/09 19:23:12 by loichu           ###   ########.fr        #
+#    Updated: 2022/06/09 20:13:24 by lhumbert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ ifeq ($(OS),Linux)
 else
 	MLX=mlx
 	MACROS=-DKEY_ESC=0x35 \
-		   -DKEY_UP=0x7b \
-		   -DKEY_LEFT=0x7e \
-		   -DKEY_RIGHT=0x7d \
-		   -DKEY_DOWN=0x7c
+		   -DKEY_UP=0x7e \
+		   -DKEY_LEFT=0x7b \
+		   -DKEY_RIGHT=0x7c \
+		   -DKEY_DOWN=0x7d
 endif
 
 SRCS_DIR	=	src
