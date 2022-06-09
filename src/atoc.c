@@ -6,13 +6,11 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:43:00 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/09 18:17:05 by loichu           ###   ########.fr       */
+/*   Updated: 2022/06/09 18:19:43 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
-
-#include <stdio.h>
 
 int	integer_part(char const *nb, int res)
 {
@@ -56,10 +54,7 @@ double	ft_atof(char *nb)
 		res += decimal_part(split[1]);
 	i = 0;
 	while (split[i])
-	{
-		printf("FREE %s\n", split[i]);
 		free(split[i++]);
-	}
 	free(split);
 	return (res * sign);
 }
