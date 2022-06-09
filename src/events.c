@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 17:37:51 by lhumbert          #+#    #+#             */
-/*   Updated: 2022/06/07 17:54:19 by lhumbert         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:52:16 by loichu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int	handle_keydown(int key, t_window *win)
 {
 	t_image	*img;
 
-	if (key == 0x35)
+	if (key == KEY_ESC)
 		exit(terminate(win));
-	else if (key == 0x7b)
+	else if (key == KEY_LEFT)
 		win->plan.center.x -= 0.5 / win->plan.zoom;
-	else if (key == 0x7e)
+	else if (key == KEY_UP)
 		win->plan.center.y -= 0.5 / win->plan.zoom;
-	else if (key == 0x7d)
+	else if (key == KEY_DOWN)
 		win->plan.center.y += 0.5 / win->plan.zoom;
-	else if (key == 0x7c)
+	else if (key == KEY_RIGHT)
 		win->plan.center.x += 0.5 / win->plan.zoom;
 	else
 		return (1);

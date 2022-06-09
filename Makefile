@@ -6,7 +6,7 @@
 #    By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/14 17:48:26 by lhumbert          #+#    #+#              #
-#    Updated: 2022/06/07 17:41:39 by lhumbert         ###   ########.fr        #
+#    Updated: 2022/06/08 18:41:55 by loichu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,22 +30,32 @@ MAIN		= main.c
 OS			= $(shell uname)
 ifeq ($(OS),Linux)
 	MLX=mlx_linux
+	MACROS=-DKEY_ESC=0xff1b \
+		   -DKEY_UP=0xff52 \
+		   -DKEY_LEFT=0xff51 \
+		   -DKEY_RIGHT=0xff53 \
+		   -DKEY_DOWN=0xff54
 else
 	MLX=mlx
+	MACROS=-DKEY_ESC=0x35 \
+		   -DKEY_UP=0x7b \
+		   -DKEY_LEFT=0x7e \
+		   -DKEY_RIGHT=0x7d \
+		   -DKEY_DOWN=0x7c
 endif
 
-SRCS_DIR	= src
-OBJS_DIR	= obj
-OBJS		= $(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
-MAIN_OBJ	= $(addprefix $(OBJS_DIR)/, ${MAIN:.c=.o})
+SRCS_DIR	=	src
+OBJS_DIR	=	obj
+OBJS		=	$(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
+MAIN_OBJ	=	$(addprefix $(OBJS_DIR)/, ${MAIN:.c=.o})
 
-LIBFT		= libft.a
-LIBFT_DIR	= libft
+LIBFT		=	libft.a
+LIBFT_DIR	=	libft
 
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
-DEV_FLAGS	= -Wall -Wextra -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
-DBG_FLAGS	= -g -fsanitize=address
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
+DEV_FLAGS	=	-Wall -Wextra -I. -I$(SRCS_DIR) -I$(LIBFT_DIR) -I$(MLX)
+DBG_FLAGS	=	-g -fsanitize=address
 
 ################################################################################
 #                                     Colors                                   #
@@ -73,6 +83,7 @@ header:
 			@printf "%b" "$(OBJ_COLOR)CC: 	$(WARN_COLOR)$(CC)\n\033[m"
 			@printf "%b" "$(OBJ_COLOR)Flags: 	$(WARN_COLOR)$(CFLAGS)\n\033[m"
 			@echo
+			@echo $(MACROS)
 
 $(NAME):		$(OBJS) $(MAIN_OBJ)
 ifeq ($(OS),Linux)
@@ -85,12 +96,11 @@ else
 endif
 
 obj/%.o:		$(SRCS_DIR)/%.c $(LIBFT_DIR)/$(LIBFT)
-				echo $(OS)
 				@mkdir -p $(dir $@)
 ifeq ($(OS),Linux)
-					$(CC) $(CFLAGS) -I/usr/include -O3 -c $< -o $@
+					$(CC) $(CFLAGS) $(MACROS) -I/usr/include -O3 -c $< -o $@
 else
-					$(CC) $(CFLAGS) -c $< -o $@
+					$(CC) $(CFLAGS) $(MACROS) -c $< -o $@
 endif
 
 debug:			$(OBJS) $(MOCK_OBJS)
